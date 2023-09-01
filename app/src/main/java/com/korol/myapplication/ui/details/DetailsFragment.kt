@@ -26,7 +26,6 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.korol.myapplication.R
-import com.korol.myapplication.app.App
 import com.korol.myapplication.common.IsNotDetailsData
 import com.korol.myapplication.databinding.FragmentDetailsBinding
 import com.korol.myapplication.ui.details.tabfragment.TabDetailsFragment
@@ -40,7 +39,7 @@ import kotlin.math.roundToInt
 class DetailsFragment : Fragment(R.layout.fragment_details) {
     private val viewBinding: FragmentDetailsBinding by viewBinding()
 
-    private val args: DetailsFragmentArgs by navArgs()
+    //private val args: DetailsFragmentArgs by navArgs()
 
     // Animations
     private var slideInLeft: Animation? = null
@@ -56,18 +55,20 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     @javax.inject.Inject
     lateinit var vmFactory: DetailsViewModel.DetailsViewModelFactory
 
-    private val viewModel: DetailsViewModel by viewModels {
-        DetailsViewModel.providesFactory(
-            assistedFactory = vmFactory,
-            productId = args.productId
-        )
-    }
+//    private val viewModel: DetailsViewModel by viewModels {
+//        DetailsViewModel.providesFactory(
+//            assistedFactory = vmFactory,
+//            productId = args.productId,
+//        )
+//    }
+
+    private val viewModel: DetailsViewModel?= null
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity?.applicationContext as App).appComponent.injectDetailsFragment(this)
-        viewModel.onCreateUpdate()
+        // (activity?.applicationContext as App).appComponent.injectDetailsFragment(this)
+        viewModel?.onCreateUpdate()
         setColorsClickListeners()
         setMemoryClickListeners()
         setButtonBackListeners()
@@ -83,7 +84,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             lifecycleScope.launch {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     launch {
-                        viewModel.stateFlow.collect {
+                        viewModel?.stateFlow?.collect {
                             if (it.detailsInfo != null) {
                                 Glide.with(requireActivity())
                                     .load(it.detailsInfo.images[it.currentImage])
@@ -98,8 +99,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                                             it.detailsInfo.cpu,
                                             it.detailsInfo.camera,
                                             it.detailsInfo.sd,
-                                            it.detailsInfo.ssd
-                                        )
+                                            it.detailsInfo.ssd,
+                                        ),
                                     )
                                     showColor(it.detailsInfo.color)
                                     showMemorySize(it.detailsInfo.capacity)
@@ -113,7 +114,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     }
 
                     launch {
-                        viewModel.sideEffect.collectLatest {
+                        viewModel?.sideEffect?.collectLatest {
                             if (it is IsNotDetailsData) {
                                 writeError(view, it.errorMessage)
                             }
@@ -125,40 +126,40 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun setButtonAddToCartListeners() {
-        viewBinding.btnAddToCart.setOnClickListener{
-            viewModel.onButtonAddToCartClick()
+        viewBinding.btnAddToCart.setOnClickListener {
+            viewModel?.onButtonAddToCartClick()
         }
     }
 
     private fun setButtonBackListeners() {
         viewBinding.btnBack.setOnClickListener {
-            val action = DetailsFragmentDirections.actionFragmentDetailsToFragmentHome()
-            Navigation.findNavController(viewBinding.root).navigate(action)
+//            val action = DetailsFragmentDirections.actionFragmentDetailsToFragmentHome()
+//            Navigation.findNavController(viewBinding.root).navigate(action)
         }
     }
 
     private fun setButtonCartListeners() {
         viewBinding.btnCart.setOnClickListener {
-            val action = DetailsFragmentDirections.actionFragmentDetailsToFragmentCard()
-            Navigation.findNavController(viewBinding.root).navigate(action)
+//            val action = DetailsFragmentDirections.actionFragmentDetailsToFragmentCard()
+//            Navigation.findNavController(viewBinding.root).navigate(action)
         }
     }
 
     private fun setColorsClickListeners() {
         viewBinding.vColor1.setOnClickListener {
-            viewModel.onColorClick(0)
+            viewModel?.onColorClick(0)
         }
         viewBinding.vColor2.setOnClickListener {
-            viewModel.onColorClick(1)
+            viewModel?.onColorClick(1)
         }
     }
 
     private fun setMemoryClickListeners() {
         viewBinding.cvMemory1.setOnClickListener {
-            viewModel.onMemoryClick(0)
+            viewModel?.onMemoryClick(0)
         }
         viewBinding.cvMemory2.setOnClickListener {
-            viewModel.onMemoryClick(1)
+            viewModel?.onMemoryClick(1)
         }
     }
 
@@ -172,17 +173,18 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun showColor(colorList: List<String>) {
-        if (viewModel.stateFlow.value.detailsInfo != null)
+        if (viewModel?.stateFlow?.value?.detailsInfo != null) {
             for (i in 0 until colorList.size) {
                 when (i) {
                     0 -> viewBinding.vColor1.setBackgroundTintList(
-                        ColorStateList.valueOf(colorList[i].toColorInt())
+                        ColorStateList.valueOf(colorList[i].toColorInt()),
                     )
                     1 -> viewBinding.vColor2.setBackgroundTintList(
-                        ColorStateList.valueOf(colorList[i].toColorInt())
+                        ColorStateList.valueOf(colorList[i].toColorInt()),
                     )
                 }
             }
+        }
     }
 
     private fun showChoiceColor(number: Int) {
@@ -199,13 +201,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun showMemorySize(memoryList: List<String>) {
-        if (viewModel.stateFlow.value.detailsInfo != null)
+        if (viewModel?.stateFlow?.value?.detailsInfo != null) {
             for (i in 0 until memoryList.size) {
                 when (i) {
                     0 -> viewBinding.tvMemory1.text = getString(R.string.sizeMemory, memoryList[i])
                     1 -> viewBinding.tvMemory2.text = getString(R.string.sizeMemory, memoryList[i])
                 }
             }
+        }
     }
 
     private fun showChoiceMemorySize(number: Int) {
@@ -215,29 +218,29 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.orange
-                        )
-                    )
+                            R.color.orange,
+                        ),
+                    ),
                 )
                 viewBinding.cvMemory2.setBackgroundTintList(
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.white
-                        )
-                    )
+                            R.color.white,
+                        ),
+                    ),
                 )
                 viewBinding.tvMemory1.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.white
-                    )
+                        R.color.white,
+                    ),
                 )
                 viewBinding.tvMemory2.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.size_memory
-                    )
+                        R.color.size_memory,
+                    ),
                 )
             }
             1 -> {
@@ -245,29 +248,29 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.white
-                        )
-                    )
+                            R.color.white,
+                        ),
+                    ),
                 )
                 viewBinding.cvMemory2.setBackgroundTintList(
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.orange
-                        )
-                    )
+                            R.color.orange,
+                        ),
+                    ),
                 )
                 viewBinding.tvMemory1.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.size_memory
-                    )
+                        R.color.size_memory,
+                    ),
                 )
                 viewBinding.tvMemory2.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.white
-                    )
+                        R.color.white,
+                    ),
                 )
             }
         }
@@ -280,7 +283,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         adapter.addFragment(TabFeaturesFragment(), "Features")
         childFragmentManager.setFragmentResult(
             TAG_SHOP,
-            bundleOf(KEY_FOR_TAG_SHOP to list)
+            bundleOf(KEY_FOR_TAG_SHOP to list),
         )
         viewBinding.viewPager.adapter = adapter
         viewBinding.viewPager.currentItem = 0
@@ -291,8 +294,10 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private inner class SwipeListener : GestureDetector.SimpleOnGestureListener() {
         override fun onFling(
-            e1: MotionEvent, e2: MotionEvent,
-            velocityX: Float, velocityY: Float
+            e1: MotionEvent,
+            e2: MotionEvent,
+            velocityX: Float,
+            velocityY: Float,
         ): Boolean {
             /* Swipe parameters */
             val swipeMinDistance = 75
@@ -316,7 +321,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     private fun moveNextOrPrevious(delta: Int) {
         if (delta > 0) setupAnimations(Direction.RIGHT)
         if (delta < 0) setupAnimations(Direction.LEFT)
-        viewModel.onSwipe(delta)
+        viewModel?.onSwipe(delta)
     }
 
     private fun setupAnimations(direction: Direction) {
@@ -330,7 +335,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             Direction.LEFT -> slideOutRight
         }
         // overscroll (no more photos) effect on the side on the screen
-        if (viewModel.stateFlow.value.detailsInfo != null) {
+        if (viewModel?.stateFlow?.value?.detailsInfo != null) {
             if (viewModel.stateFlow.value.detailsInfo!!.images.size <= 1) {
                 when (direction) {
                     Direction.RIGHT -> {
@@ -375,7 +380,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             Snackbar.make(view, error, Snackbar.LENGTH_INDEFINITE)
                 .setTextColor(ContextCompat.getColor(requireContext(), R.color.error_text))
                 .setAction("Retry") {
-                    viewModel.onRetryClick()
+                    viewModel?.onRetryClick()
                 }
         val sbView = snackBarView.view
         val params = sbView.layoutParams as FrameLayout.LayoutParams
@@ -389,5 +394,4 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         const val TAG_SHOP = "tag_shop"
         const val KEY_FOR_TAG_SHOP = "key_for_tag_shop"
     }
-
 }

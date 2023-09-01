@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.korol.domain.cart.CartInteractor
 import com.korol.domain.details.DetailsInteractor
 import com.korol.myapplication.common.BaseViewModel
 import com.korol.myapplication.common.IsNotDetailsData
@@ -15,8 +14,8 @@ import kotlinx.coroutines.launch
 
 class DetailsViewModel @AssistedInject constructor(
     private val detailsInteractor: DetailsInteractor,
-    private val cartInteractor: CartInteractor,
-    @Assisted private val productId: Int
+    // private val cartInteractor: CartInteractor,
+    @Assisted private val productId: Int,
 ) : BaseViewModel<DetailsState>(DetailsState()) {
 
     @AssistedFactory
@@ -28,7 +27,7 @@ class DetailsViewModel @AssistedInject constructor(
     companion object {
         fun providesFactory(
             assistedFactory: DetailsViewModelFactory,
-            productId: Int
+            productId: Int,
         ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 return assistedFactory.create(productId) as T
@@ -40,16 +39,16 @@ class DetailsViewModel @AssistedInject constructor(
         viewModelScope.launch {
             try {
                 val data = detailsInteractor.getDetails(productId)
-                val data2 = cartInteractor.getCart()
+                // val data2 = cartInteractor.getCart()
                 updateState {
                     copy(
                         detailsInfo = data,
-                        countProductsInCart = data2.basket.size
+                        // countProductsInCart = data2.basket.size
                     )
                 }
                 updateState {
                     copy(
-                        initPager = true
+                        initPager = true,
                     )
                 }
             } catch (e: Exception) {

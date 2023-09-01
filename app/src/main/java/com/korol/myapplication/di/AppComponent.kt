@@ -1,15 +1,20 @@
 package com.korol.myapplication.di
 
-import com.korol.myapplication.ui.cart.CartFragment
-import com.korol.myapplication.ui.details.DetailsFragment
-import com.korol.myapplication.ui.home.HomeFragment
+import android.content.Context
+import com.korol.myapplication.ui.hotel.HotelFragment
+import dagger.BindsInstance
 import dagger.Component
 
-@Component(modules = [AppModule::class,DomainModule::class,DataModule::class])
+@Component(modules = [BindDomainModule::class, BindDataModule::class, RetrofitDataModule::class])
 interface AppComponent {
-    fun injectHomeFragment(homeFragment: HomeFragment)
+    fun injectHotelFragment(hotelFragment: HotelFragment)
 
-    fun injectDetailsFragment(detailsFragment: DetailsFragment)
+    // fun injectDetailsFragment(detailsFragment: DetailsFragment)
 
-    fun injectCartFragment(cartFragment: CartFragment)
+    @Component.Factory
+    interface Factory {
+        fun create(
+            @BindsInstance context: Context,
+        ): AppComponent
+    }
 }
