@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_margin="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/item_bestseller_background"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+        
+        <ImageView       
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            tools:src="@tools:sample/avatars"
+            />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/tvPriceWithoutDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/deep_blue"
+                    android:textStyle="bold"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginBottom="5dp"
+                    tools:text="$1047"/>
+
+                <TextView
+                    android:id="@+id/tvDiscountPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:textSize="10sp"
+                    android:textColor="@color/price_bestseller_discount_background"
+                    tools:text="$1050"/>
+
+            </LinearLayout>
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="21dp"
+            android:textSize="10sp"
+            android:letterSpacing="-0.03"
+            android:textColor="@color/deep_blue"
+            tools:text="Samsung Note 20 Ultra"
+            android:layout_gravity="bottom"
+            />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="11dp"
+            android:layout_gravity="end">
+            <View
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/circle_select_category"
+                />
+            <ImageView
+                android:id="@+id/ivFavouritesBestsellerUnchecked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_favourites_bestseller_unchecked"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                tools:visibility="visible"
+                />
+            <ImageView
+                android:id="@+id/ivFavouritesBestsellerChecked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:src="@drawable/ic_favourites_bestseller_checked"
+                android:layout_gravity="center"
+                />
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+    
+
+
+
+</FrameLayout>
