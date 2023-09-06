@@ -35,8 +35,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="71cb28" />
-                            <entry key="outputName" value="ic_arrow_right" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../icon/Icons/Icons/arrow_right.svg" />
+                            <entry key="outputName" value="ic_arrow_back" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../icon/Icons/Icons/arrow back.svg" />
                           </map>
                         </option>
                       </PersistentState>

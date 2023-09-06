@@ -57,4 +57,16 @@ class HotelViewModel
     fun onClickSendRequest() {
         getHotel()
     }
+
+    fun onSwipe(delta: Int) {
+        if (delta > 0) {
+            if (stateFlow.value.currentPhoto + 1 < (stateFlow.value.hotel?.imageUrls?.size ?: 0)) {
+                updateState { copy(currentPhoto = currentPhoto + 1) }
+            }
+        } else {
+            if (stateFlow.value.currentPhoto - 1 >= 0) {
+                updateState { copy(currentPhoto = currentPhoto - 1) }
+            }
+        }
+    }
 }

@@ -9,6 +9,17 @@
         android:name="com.korol.myapplication.ui.hotel.HotelFragment"
         android:label="HotelFragment"
         tools:layout="@layout/fragment_hotel"
+        >
+        <action
+            android:id="@+id/action_fragment_hotel_to_fragment_room"
+            app:destination="@id/fragment_room" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_room"
+        android:name="com.korol.myapplication.ui.room.RoomFragment"
+        android:label="RoomFragment"
+        tools:layout="@layout/fragment_room"
         />
 
     <fragment

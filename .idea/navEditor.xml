@@ -17,15 +17,6 @@
                             <option name="y" value="364" />
                           </Point>
                         </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_fragment_details_to_fragment_home">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -38,14 +29,17 @@
                             <option name="y" value="362" />
                           </Point>
                         </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_fragment_home_to_fragment_details">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="fragment_room">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-328" />
+                            <option name="y" value="364" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
