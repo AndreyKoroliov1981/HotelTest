@@ -14,12 +14,9 @@ import androidx.core.graphics.toColorInt
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -39,7 +36,7 @@ import kotlin.math.roundToInt
 class DetailsFragment : Fragment(R.layout.fragment_details) {
     private val viewBinding: FragmentDetailsBinding by viewBinding()
 
-    //private val args: DetailsFragmentArgs by navArgs()
+    // private val args: DetailsFragmentArgs by navArgs()
 
     // Animations
     private var slideInLeft: Animation? = null
@@ -62,7 +59,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 //        )
 //    }
 
-    private val viewModel: DetailsViewModel?= null
+    private val viewModel: DetailsViewModel? = null
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,7 +85,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                             if (it.detailsInfo != null) {
                                 Glide.with(requireActivity())
                                     .load(it.detailsInfo.images[it.currentImage])
-                                    .placeholder(R.drawable.ic_downloading)
+                                    .placeholder(R.drawable.ic_download)
                                     .error(R.drawable.ic_error).into(ivHotSales)
                                 btnFavourites.isVisible = it.detailsInfo.isFavorites
                                 tvNameProduct.text = it.detailsInfo.title
@@ -104,7 +101,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                                     )
                                     showColor(it.detailsInfo.color)
                                     showMemorySize(it.detailsInfo.capacity)
-                                    btnAddToCart.text = getString(R.string.textBtnAdd, it.detailsInfo.price)
+                                    //btnAddToCart.text = getString(R.string.textBtnAdd, it.detailsInfo.price)
                                 }
                                 showCountProductInCart(it.countProductsInCart)
                                 showChoiceColor(it.currentColor)
@@ -204,8 +201,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         if (viewModel?.stateFlow?.value?.detailsInfo != null) {
             for (i in 0 until memoryList.size) {
                 when (i) {
-                    0 -> viewBinding.tvMemory1.text = getString(R.string.sizeMemory, memoryList[i])
-                    1 -> viewBinding.tvMemory2.text = getString(R.string.sizeMemory, memoryList[i])
+//                    0 -> viewBinding.tvMemory1.text = getString(R.string.sizeMemory, memoryList[i])
+//                    1 -> viewBinding.tvMemory2.text = getString(R.string.sizeMemory, memoryList[i])
                 }
             }
         }
@@ -218,7 +215,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.orange,
+                            R.color.main_background, //refactoring
                         ),
                     ),
                 )
@@ -239,7 +236,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                 viewBinding.tvMemory2.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.size_memory,
+                        R.color.main_background, //refactoring
                     ),
                 )
             }
@@ -256,14 +253,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.orange,
+                            R.color.main_background, //refactoring
                         ),
                     ),
                 )
                 viewBinding.tvMemory1.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.size_memory,
+                        R.color.main_background, //refactoring
                     ),
                 )
                 viewBinding.tvMemory2.setTextColor(

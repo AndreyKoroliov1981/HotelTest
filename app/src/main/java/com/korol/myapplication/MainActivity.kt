@@ -26,6 +26,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initInsets() {
         viewBinding.activityContainer.addInsets()
-        this.setColorStatusBar(viewBinding.activityContainer, null, true)
+        this.setColorStatusBar(viewBinding.activityContainer, R.color.white, true)
     }
 }

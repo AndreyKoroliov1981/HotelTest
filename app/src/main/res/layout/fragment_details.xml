@@ -30,18 +30,17 @@
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:layout_marginStart="42dp"
-                android:background="@drawable/background_close_button"
-                android:src="@drawable/ic_back"
+
                 />
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="@string/textProductDetails"
+
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:letterSpacing="-0.02"
-                android:textColor="@color/deep_blue"
+
                 android:layout_gravity="center"
                 >
             </TextView>
@@ -60,15 +59,14 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:layout_marginEnd="35dp"
-                android:background="@drawable/background_cart_button"
-                android:src="@drawable/ic_cart"
+
                 />
                 <TextView
                     android:id="@+id/tvCountProductInCart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:textColor="@color/deep_blue"
+
                     tools:text="5"
                     />
             </FrameLayout>
@@ -136,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:textColor="@color/deep_blue"
+
             android:textStyle="bold"
             tools:text="Galaxy Note 20 Ultra"
             android:letterSpacing="-0.01"
@@ -155,8 +153,7 @@
                 android:layout_marginTop="28dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/background_close_button"
-                android:src="@drawable/ic_favourites_details"
+
                 />
             <ImageView
                 android:id="@+id/ivStar1"
@@ -165,7 +162,7 @@
                 android:layout_marginTop="7dp"
                 app:layout_constraintStart_toStartOf="@id/tvNameProduct"
                 app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
-                android:src="@drawable/ic_star_full"
+
                 />
             <ImageView
                 android:id="@+id/ivStar2"
@@ -175,7 +172,7 @@
                 android:layout_marginTop="7dp"
                 app:layout_constraintStart_toStartOf="@id/tvNameProduct"
                 app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
-                android:src="@drawable/ic_star_full"
+
                 />
             <ImageView
                 android:id="@+id/ivStar3"
@@ -185,7 +182,7 @@
                 android:layout_marginTop="7dp"
                 app:layout_constraintStart_toStartOf="@id/tvNameProduct"
                 app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
-                android:src="@drawable/ic_star_full"
+
                 />
             <ImageView
                 android:id="@+id/ivStar4"
@@ -195,7 +192,7 @@
                 android:layout_marginTop="7dp"
                 app:layout_constraintStart_toStartOf="@id/tvNameProduct"
                 app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
-                android:src="@drawable/ic_star_full"
+
                 />
             <ImageView
                 android:id="@+id/ivStar5"
@@ -205,7 +202,7 @@
                 android:layout_marginTop="7dp"
                 app:layout_constraintStart_toStartOf="@id/tvNameProduct"
                 app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
-                android:src="@drawable/ic_star_full"
+
                 />
 
             <com.google.android.material.tabs.TabLayout
@@ -216,9 +213,8 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginEnd="28dp"
                 android:background="@color/white"
-                app:tabSelectedTextColor="@color/deep_blue"
-                app:tabIndicatorColor="@color/orange"
-                app:tabTextAppearance="@style/TabWidgetText"
+
+
                 app:tabMode="fixed"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -241,10 +237,10 @@
                 android:id="@+id/textSelect_color_and_capacity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textSelect_color_and_capacity"
+
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/deep_blue"
+
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
@@ -267,7 +263,7 @@
                     android:id="@+id/vColor1"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/circle_select_category"
+
                     tools:backgroundTint="#772D03"
                     />
                     <ImageView
@@ -275,7 +271,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_choice"
+
                         />
 
                 </FrameLayout>
@@ -289,7 +285,7 @@
                     android:id="@+id/vColor2"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/circle_select_category"
+
                     tools:backgroundTint="#010035"
                     />
                     <ImageView
@@ -298,7 +294,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:visibility="gone"
-                        android:src="@drawable/ic_choice"
+
                         />
                 </FrameLayout>
 
@@ -307,7 +303,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="58dp"
-                    android:backgroundTint="@color/orange"
+
                     app:cardCornerRadius="10dp"
                     >
                     <TextView
@@ -337,7 +333,7 @@
                         android:id="@+id/tvMemory2"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:textColor="@color/size_memory"
+
                         android:textStyle="bold"
                         android:letterSpacing="-0.03"
                         android:paddingStart="15dp"
@@ -357,13 +353,13 @@
                 android:layout_marginTop="81dp"
                 android:layout_marginStart="29dp"
                 android:layout_marginEnd="30dp"
-                android:text="@string/textBtnAdd"
+
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:letterSpacing="-0.02"
-                android:backgroundTint="@color/orange"
+
                 app:cornerRadius="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

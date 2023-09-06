@@ -7,18 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="orange">#FF6E4E</color>
-    <color name="deep_blue">#010035</color>
-    <color name="main_background">#F5F5F5</color>
-    <color name="select_category_background">#B3B3C3</color>
+    <color name="main_background">#D8D8D8</color>
     <color name="error_text">#FF0000</color>
-    <color name="spinner_outline">#DCDCDC</color>
-    <color name="details_info">#B7B7B7</color>
-    <color name="size_memory">#8D8D8D</color>
-    <color name="dividerBottom">#33FFFFFF</color>
-    <color name="dividerTop">#40FFFFFF</color>
-    <color name="counter_background">#282843</color>
-    <color name="item_bestseller_background">#FBFBFB</color>
-    <color name="price_bestseller_discount_background">#CCCCCC</color>
+    <color name="blue">#0D72FF</color>
+    <color name="gray">#828796</color>
+    <color name="color_star_text">#FFA800</color>
+    <color name="color_background_rating">#33FFC700</color>
+    <color name="color_background_addInformation">#FBFBFC</color>
+    <color name="color_button_addInformation">#2C3035</color>
+
 
 </resources>
