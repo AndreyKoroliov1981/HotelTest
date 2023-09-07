@@ -9,7 +9,7 @@ class RoomMapper
     fun mapRoomsFromNetwork(roomsResponse: RoomResponse): List<Room> {
         val listRoom = mutableListOf<Room>()
         for (item in roomsResponse.rooms) {
-            Room(
+            val room = Room(
                 id = item.id,
                 name = item.name,
                 price = item.price,
@@ -17,6 +17,7 @@ class RoomMapper
                 peculiarities = item.peculiarities,
                 imageUrls = item.imageUrls,
             )
+            listRoom.add(room)
         }
         return listRoom
     }

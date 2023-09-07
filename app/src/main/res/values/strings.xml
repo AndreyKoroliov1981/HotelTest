@@ -2,11 +2,14 @@
     <string name="app_name">My Application</string>
     <string name="textHotel">Отель</string>
     <string name="textChoiceRoom">К выбору номера</string>
+    <string name="textForRoomPrice">%1$s ₽</string>
     <string name="textForMinimalPrice">от %1$s ₽</string>
     <string name="textAboutHotel">Об отеле</string>
     <string name="textComfort">Удобства</string>
     <string name="textMostNecessary">Самое необходимое</string>
     <string name="textInput">Что включено</string>
     <string name="textOutput">Что не включено</string>
+    <string name="textDetailsAboutRoom">Подробнее о номере</string>
+    <string name="textChoiceRoomInHotel">Выбрать номер</string>
 
 </resources>

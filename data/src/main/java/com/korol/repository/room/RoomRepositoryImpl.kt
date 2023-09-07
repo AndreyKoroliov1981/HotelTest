@@ -1,6 +1,6 @@
 package com.korol.repository.room
 
-import com.korol.domain.hotel.model.Response
+import com.korol.domain.Response
 import com.korol.domain.room.RoomRepository
 import com.korol.domain.room.model.Room
 import com.korol.network.api.room.RoomRetrofitService

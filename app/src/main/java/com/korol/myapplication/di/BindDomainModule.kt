@@ -1,5 +1,7 @@
 package com.korol.myapplication.di
 
+import com.korol.domain.booking.BookingInteractor
+import com.korol.domain.booking.BookingInteractorImpl
 import com.korol.domain.hotel.HotelInteractor
 import com.korol.domain.hotel.HotelInteractorImpl
 import com.korol.domain.room.RoomInteractor
@@ -14,4 +16,7 @@ interface BindDomainModule {
 
     @Binds
     fun bindRoomInteractorImpl(roomInteractorImpl: RoomInteractorImpl): RoomInteractor
+
+    @Binds
+    fun bindBookingInteractorImpl(bookingInteractorImpl: BookingInteractorImpl): BookingInteractor
 }

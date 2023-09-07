@@ -1,6 +1,7 @@
 package com.korol.myapplication.di
 
 import android.content.Context
+import com.korol.myapplication.ui.booking.BookingFragment
 import com.korol.myapplication.ui.hotel.HotelFragment
 import com.korol.myapplication.ui.room.RoomFragment
 import dagger.BindsInstance
@@ -12,7 +13,7 @@ interface AppComponent {
 
     fun injectRoomFragment(roomFragment: RoomFragment)
 
-    // fun injectDetailsFragment(detailsFragment: DetailsFragment)
+    fun injectBookingFragment(bookingFragment: BookingFragment)
 
     @Component.Factory
     interface Factory {

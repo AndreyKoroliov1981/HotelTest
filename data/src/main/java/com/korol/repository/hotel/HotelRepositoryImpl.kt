@@ -2,7 +2,7 @@ package com.korol.repository.hotel
 
 import com.korol.domain.hotel.HotelRepository
 import com.korol.domain.hotel.model.Hotel
-import com.korol.domain.hotel.model.Response
+import com.korol.domain.Response
 import com.korol.network.api.hotel.HotelRetrofitService
 import com.korol.network.api.hotel.model.HotelResponse
 import kotlinx.coroutines.Dispatchers

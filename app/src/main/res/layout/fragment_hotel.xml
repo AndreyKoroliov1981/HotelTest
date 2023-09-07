@@ -84,7 +84,6 @@
                                     android:id="@+id/ivPhotoHotel"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxHeight="257dp"
                                     android:scaleType="centerInside"
                                     tools:src="@tools:sample/backgrounds/scenic" />
                             </ImageSwitcher>

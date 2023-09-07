@@ -19,8 +19,22 @@
         android:id="@+id/fragment_room"
         android:name="com.korol.myapplication.ui.room.RoomFragment"
         android:label="RoomFragment"
-        tools:layout="@layout/fragment_room"
-        />
+        tools:layout="@layout/fragment_room">
+    <argument
+        android:name="nameHotel"
+        app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_room_to_fragment_booking"
+            app:destination="@id/fragment_booking" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_booking"
+        tools:layout="@layout/fragment_booking"
+        android:name="com.korol.myapplication.ui.booking.BookingFragment"
+        android:label="BookingFragment"
+        >
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_details"

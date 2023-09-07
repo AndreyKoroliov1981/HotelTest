@@ -1,6 +1,6 @@
 package com.korol.domain.room
 
-import com.korol.domain.hotel.model.Response
+import com.korol.domain.Response
 import com.korol.domain.room.model.Room
 
 interface RoomRepository {

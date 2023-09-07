@@ -1,7 +1,7 @@
 package com.korol.domain.hotel
 
+import com.korol.domain.Response
 import com.korol.domain.hotel.model.Hotel
-import com.korol.domain.hotel.model.Response
 import javax.inject.Inject
 
 class HotelInteractorImpl

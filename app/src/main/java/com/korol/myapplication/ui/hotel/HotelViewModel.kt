@@ -15,7 +15,7 @@ const val DEBOUNCE_MILS = 300L
 class HotelViewModel
 @Inject constructor(
     private val hotelInteractor: HotelInteractor,
-    private val hotelVoMapper: HotelVoMapper
+    private val hotelVoMapper: HotelVoMapper,
 ) : BaseViewModel<HotelState>(HotelState()) {
 
     private var job: Job? = null

@@ -52,7 +52,7 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appComponent.injectHotelFragment(this)
-        viewModel = ViewModelProvider(this, vmFactory).get(HotelViewModel::class.java)
+        viewModel = ViewModelProvider(this, vmFactory)[HotelViewModel::class.java]
         setPullToRefresh()
         setButtonChoice()
         val gestureDetector = GestureDetector(requireContext(), SwipeListener())
@@ -113,9 +113,11 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
         }
     }
 
-    private fun setButtonChoice(){
+    private fun setButtonChoice() {
         viewBinding.btnChoiceRoom.setOnClickListener {
-            val action = HotelFragmentDirections.actionFragmentHotelToFragmentRoom()
+            val action = HotelFragmentDirections.actionFragmentHotelToFragmentRoom(
+                viewModel.stateFlow.value.hotel?.name ?: "",
+            )
             Navigation.findNavController(viewBinding.root).navigate(action)
         }
     }
