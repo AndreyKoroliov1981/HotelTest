@@ -31,10 +31,20 @@ class BookingViewModel
             val responseBooking = bookingInteractor.getBooking()
 
             if (responseBooking.errorText == null) {
-                updateState { copy(booking = responseBooking.data) }
+                val fullPay = if (responseBooking.data != null) {
+                    responseBooking.data!!.tourPrice +
+                        responseBooking.data!!.fuelCharge +
+                        responseBooking.data!!.serviceCharge
+                } else {
+                    0
+                }
+                updateState { copy(booking = responseBooking.data, fullPay = fullPay) }
             } else {
                 if (responseBooking.data != null) {
-                    updateState { copy(booking = responseBooking.data) }
+                    val fullPay = responseBooking.data!!.tourPrice +
+                        responseBooking.data!!.fuelCharge +
+                        responseBooking.data!!.serviceCharge
+                    updateState { copy(booking = responseBooking.data, fullPay = fullPay) }
                 }
                 sideEffectSharedFlow.emit(IsErrorData(responseBooking.errorText!!))
             }
@@ -44,5 +54,11 @@ class BookingViewModel
     }
     fun onClickSendRequest() {
         getBooking()
+    }
+    fun onClickFirstTouristArrow(){
+        val newList: MutableList<Boolean> = state.isOpenViewPerson.toMutableList()
+        val state = state.isOpenViewPerson[0]
+        newList[0] = !state
+        updateState { copy(isOpenViewPerson = newList) }
     }
 }

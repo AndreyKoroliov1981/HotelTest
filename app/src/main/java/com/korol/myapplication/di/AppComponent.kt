@@ -15,6 +15,7 @@ interface AppComponent {
     fun injectRoomFragment(roomFragment: RoomFragment)
 
     fun injectBookingFragment(bookingFragment: BookingFragment)
+
     fun injectOrderPayFragment(orderPayFragment: OrderPayFragment)
 
     @Component.Factory

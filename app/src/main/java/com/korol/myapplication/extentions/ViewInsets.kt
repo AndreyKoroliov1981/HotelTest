@@ -2,18 +2,15 @@ package com.korol.myapplication.extentions
 
 import android.app.Activity
 import android.graphics.Color
-import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -43,9 +40,13 @@ fun Activity.setColorStatusBar(view: View, color: Int? = null, darkModeIcon: Boo
     if (color == null) {
         colorBackground = Color.TRANSPARENT
         val background: Drawable? = view.background
-        if (background is ColorDrawable) colorBackground =
-            background.color
-    } else colorBackground = ContextCompat.getColor(this, color)
+        if (background is ColorDrawable) {
+            colorBackground =
+                background.color
+        }
+    } else {
+        colorBackground = ContextCompat.getColor(this, color)
+    }
 
     val statusBarColor: Int = colorBackground
     if (statusBarColor == Color.BLACK && window.navigationBarColor == Color.BLACK) {
@@ -74,12 +75,12 @@ fun Activity.setColorStatusBar(view: View, color: Int? = null, darkModeIcon: Boo
             if (darkModeIcon) {
                 window.insetsController?.setSystemBarsAppearance(
                     WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
                 )
             } else {
                 window.insetsController?.setSystemBarsAppearance(
                     0,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
                 )
             }
         }

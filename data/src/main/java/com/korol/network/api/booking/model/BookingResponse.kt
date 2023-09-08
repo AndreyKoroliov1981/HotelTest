@@ -15,7 +15,7 @@ data class BookingResponse(
     @SerializedName("number_of_nights") val numberOfNights: Int,
     val room: String,
     val nutrition: String,
-    @SerializedName("tour_price") val tourPrice: Long,
-    @SerializedName("fuel_charge") val fuelCharge: Long,
-    @SerializedName("service_charge") val serviceCharge: Long,
+    @SerializedName("tour_price") val tourPrice: Long?,
+    @SerializedName("fuel_charge") val fuelCharge: Long?,
+    @SerializedName("service_charge") val serviceCharge: Long?,
 )

@@ -64,6 +64,17 @@ class RoomRVAdapter(
                     chip.text = index
                     chip.isClickable = false
                     chip.isCheckable = true
+                    chip.chipBackgroundColor =
+                        holder.binding.root.context.resources.getColorStateList(
+                            R.color.color_background_addInformation,
+                            null,
+                        )
+                    chip.setTextColor(
+                        holder.binding.root.context.resources.getColorStateList(
+                            R.color.gray,
+                            null,
+                        ),
+                    )
                     cgPeculiarities.addView(chip)
                 }
             }

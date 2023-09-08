@@ -89,6 +89,9 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
                                 for (index in it.hotel.aboutTheHotel?.peculiarities!!) {
                                     val chip = Chip(viewBinding.cgPeculiarities.context)
                                     chip.text = index
+                                    chip.chipBackgroundColor =
+                                        resources.getColorStateList(R.color.color_background_addInformation, null)
+                                    chip.setTextColor(resources.getColorStateList(R.color.gray, null))
                                     chip.isClickable = false
                                     chip.isCheckable = true
                                     viewBinding.cgPeculiarities.addView(chip)

@@ -4,6 +4,9 @@
     <string name="textChoiceRoom">К выбору номера</string>
     <string name="textForRoomPrice">%1$s ₽</string>
     <string name="textForMinimalPrice">от %1$s ₽</string>
+    <string name="textForDates">%1$s - %2$s</string>
+    <string name="textForNumbersOfNight">%1$s ночей</string>
+    <string name="textForNumbersTourist">%1$s турист</string>
     <string name="textAboutHotel">Об отеле</string>
     <string name="textComfort">Удобства</string>
     <string name="textMostNecessary">Самое необходимое</string>
@@ -23,5 +26,22 @@
     <string name="textOrderPay">Заказ оплачен</string>
     <string name="textSuperb">Супер!</string>
     <string name="textOrderInWork">Ваш заказ принят в работу</string>
+    <string name="textTour">Тур</string>
+    <string name="textFuelCharge">Топливный сбор</string>
+    <string name="textServiceCharge">Сервисный сбор</string>
+    <string name="textInPay">К оплате</string>
+    <string name="textAddTourist">Добавить туриста</string>
+
+    <string-array name="digitString">
+        <item>Первый</item>
+        <item>Второй</item>
+        <item>Третий</item>
+        <item>Четвертый</item>
+        <item>Пятый</item>
+        <item>Шестой</item>
+        <item>Седьмой</item>
+        <item>Восьмой</item>
+        <item>Девятый</item>
+    </string-array>
 
 </resources>
