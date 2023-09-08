@@ -8,6 +8,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.animation.Animation
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -47,6 +49,8 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
 
     private lateinit var overscrollLeft: View
     private lateinit var overscrollRight: View
+
+    private val sliderDotsPanel: MutableList<ImageView> = mutableListOf()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -99,6 +103,11 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
                             }
                             viewBinding.tvPriceForIt.text = it.hotel.priceForIt
                             viewBinding.tvDescription.text = it.hotel.aboutTheHotel?.description
+                            if (sliderDotsPanel == emptyList<ImageView>()) {
+                                createSliderDotsPanel(it.currentPhoto, it.hotel.imageUrls?.size ?: 0)
+                            } else {
+                                updateSliderDotsPanel(it.currentPhoto, it.hotel.imageUrls?.size ?: 0)
+                            }
                         }
                         viewBinding.pbLoad.isVisible = it.dataLoading
                     }
@@ -112,6 +121,58 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun createSliderDotsPanel(currentPosition: Int, size: Int) {
+        for (i in 0 until size) {
+            val newDot = ImageView(this.context)
+            if (i != currentPosition) {
+                newDot.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this.requireContext(),
+                        R.drawable.non_active_dot,
+                    ),
+                )
+            } else {
+                newDot.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this.requireContext(),
+                        R.drawable.active_dot,
+                    ),
+                )
+            }
+            val params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+            )
+            when (i) {
+                0 -> params.setMargins(15, 8, 5, 8)
+                size - 1 -> params.setMargins(5, 8, 15, 8)
+                else -> params.setMargins(5, 8, 5, 8)
+            }
+            viewBinding.sdpPhotoHotel.llSliderDotsPanel.addView(newDot, params)
+            sliderDotsPanel.add(newDot)
+        }
+    }
+
+    private fun updateSliderDotsPanel(currentPosition: Int, size: Int) {
+        for (i in 0 until size) {
+            if (i != currentPosition) {
+                sliderDotsPanel[i].setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this.requireContext(),
+                        R.drawable.non_active_dot,
+                    ),
+                )
+            } else {
+                sliderDotsPanel[i].setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this.requireContext(),
+                        R.drawable.active_dot,
+                    ),
+                )
             }
         }
     }

@@ -75,18 +75,38 @@
                         android:layout_marginEnd="16dp"
                         app:cardCornerRadius="15dp"
                         >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
                             <ImageSwitcher
                                 android:id="@+id/isPhotoHotel"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 >
                                 <ImageView
                                     android:id="@+id/ivPhotoHotel"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scaleType="centerInside"
+                                    android:scaleType="centerCrop"
                                     tools:src="@tools:sample/backgrounds/scenic" />
                             </ImageSwitcher>
+
+                            <include
+                                layout="@layout/slider_dots_panel"
+                                android:id="@+id/sdpPhotoHotel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView

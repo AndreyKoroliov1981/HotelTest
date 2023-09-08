@@ -55,7 +55,7 @@ class BookingViewModel
     fun onClickSendRequest() {
         getBooking()
     }
-    fun onClickFirstTouristArrow(){
+    fun onClickFirstTouristArrow() {
         val newList: MutableList<Boolean> = state.isOpenViewPerson.toMutableList()
         val state = state.isOpenViewPerson[0]
         newList[0] = !state
