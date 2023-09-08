@@ -16,6 +16,17 @@
     </fragment>
 
     <fragment
+        android:id="@+id/fragment_order_pay"
+        android:name="com.korol.myapplication.ui.orderpay.OrderPayFragment"
+        android:label="OrderPayFragment"
+        tools:layout="@layout/fragment_order_pay"
+        >
+        <action
+            android:id="@+id/action_fragment_order_pay_to_fragment_hotel"
+            app:destination="@id/fragment_hotel" />
+    </fragment>
+
+    <fragment
         android:id="@+id/fragment_room"
         android:name="com.korol.myapplication.ui.room.RoomFragment"
         android:label="RoomFragment"
@@ -34,6 +45,9 @@
         android:name="com.korol.myapplication.ui.booking.BookingFragment"
         android:label="BookingFragment"
         >
+        <action
+            android:id="@+id/action_fragment_booking_to_fragment_order_pay"
+            app:destination="@id/fragment_order_pay" />
     </fragment>
 
     <fragment

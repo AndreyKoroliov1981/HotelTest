@@ -11,5 +11,17 @@
     <string name="textOutput">Что не включено</string>
     <string name="textDetailsAboutRoom">Подробнее о номере</string>
     <string name="textChoiceRoomInHotel">Выбрать номер</string>
+    <string name="textBooking">Бронирование</string>
+    <string name="textPay">Оплатить</string>
+    <string name="textDeparture">Вылет из</string>
+    <string name="textArrivalCountry">Страна, город</string>
+    <string name="textData">Даты</string>
+    <string name="textNumberOfNights">Кол-во ночей</string>
+    <string name="textRoom">Номер</string>
+    <string name="textNutrition">Питание</string>
+    <string name="textInfoAboutCustomer">Информация о покупателе</string>
+    <string name="textOrderPay">Заказ оплачен</string>
+    <string name="textSuperb">Супер!</string>
+    <string name="textOrderInWork">Ваш заказ принят в работу</string>
 
 </resources>

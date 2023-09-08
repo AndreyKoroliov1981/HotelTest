@@ -1,7 +1,6 @@
 package com.korol.myapplication.ui.room
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
@@ -22,6 +21,7 @@ import com.korol.myapplication.R
 import com.korol.myapplication.app.App
 import com.korol.myapplication.common.IsNotHomeData
 import com.korol.myapplication.databinding.FragmentRoomBinding
+import com.korol.myapplication.ui.hotel.HotelFragmentDirections
 import com.korol.myapplication.ui.room.recycler.RVOnClickButtonChoice
 import com.korol.myapplication.ui.room.recycler.RVSwipeLeftImageRoom
 import com.korol.myapplication.ui.room.recycler.RVSwipeRightImageRoom
@@ -46,6 +46,8 @@ class RoomFragment : Fragment(R.layout.fragment_room) {
         object : RVOnClickButtonChoice {
             override fun onClicked(item: Room) {
                 viewModel.onClickedChoiceRoom(item)
+                val action = RoomFragmentDirections.actionFragmentRoomToFragmentBooking()
+                Navigation.findNavController(viewBinding.root).navigate(action)
             }
         },
         object : RVSwipeRightImageRoom {

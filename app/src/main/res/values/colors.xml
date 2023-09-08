@@ -9,11 +9,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_background">#D8D8D8</color>
     <color name="error_text">#FF0000</color>
+    <color name="error_input">#EB5757</color>
     <color name="blue">#0D72FF</color>
     <color name="gray">#828796</color>
     <color name="color_star_text">#FFA800</color>
+    <color name="color_hint_text">#A9ABB7</color>
+    <color name="color_input_text">#14142B</color>
     <color name="color_background_rating">#33FFC700</color>
     <color name="color_background_addInformation">#FBFBFC</color>
+    <color name="color_background_input_field">#F6F6F9</color>
     <color name="color_button_addInformation">#2C3035</color>
     <color name="color_button_detailsInformation">#1A0D72FF</color>
 
