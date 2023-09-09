@@ -60,9 +60,9 @@ class BookingViewModel
 
     fun checkPhoneNumber(phoneNumber: String) {
         if (cropPhone(phoneNumber).length != PHONE_LENGTH) {
-            updateState { copy(incorrectPhone = false) }
+            updateState { copy(correctPhone = false) }
         } else {
-            updateState { copy(incorrectPhone = true) }
+            updateState { copy(correctPhone = true) }
         }
     }
 
@@ -74,9 +74,9 @@ class BookingViewModel
 
     fun checkEmail(email: String) {
         if (!TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            updateState { copy(incorrectEmail = true) }
+            updateState { copy(correctEmail = true) }
         } else {
-            updateState { copy(incorrectEmail = false) }
+            updateState { copy(correctEmail = false) }
         }
     }
 
@@ -85,6 +85,17 @@ class BookingViewModel
         val state = state.isOpenViewPerson[0]
         newList[0] = !state
         updateState { copy(isOpenViewPerson = newList) }
+    }
+
+    fun onClickButtonPay() {
+        val checkIsOk = state.correctEmail == true && state.correctPhone == true
+        if (checkIsOk) {
+            updateState { copy(isPayed = true) }
+            updateState { copy(isPayed = false) } // для возможности последующего возврата на экран
+        } else {
+            if (state.correctEmail == null) updateState { copy(correctEmail = false) }
+            if (state.correctPhone == null) updateState { copy(correctPhone = false) }
+        }
     }
 
     companion object {

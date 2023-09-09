@@ -40,6 +40,7 @@
                     android:textColor="@color/black"
                     android:layout_gravity="center"
                     android:ellipsize="end"
+                    android:focusableInTouchMode="true"
                     android:text="@string/textBooking"
                     />
             </com.google.android.material.appbar.MaterialToolbar>
@@ -320,14 +321,14 @@
                         android:text="@string/textInfoAboutCustomer"
                         />
 
-                    <include layout="@layout/input_field"
+                    <include
                         android:id="@+id/inputPhone"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
+                        layout="@layout/input_field"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="16dp" />
 
                     <include layout="@layout/input_field"
                         android:id="@+id/inputEmail"

@@ -21,6 +21,7 @@ import com.korol.myapplication.R
 import com.korol.myapplication.app.App
 import com.korol.myapplication.common.IsErrorData
 import com.korol.myapplication.databinding.FragmentBookingBinding
+import com.korol.myapplication.databinding.ItemInfoTouristBinding
 import com.korol.myapplication.ui.booking.model.Person
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -36,6 +37,8 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
     @javax.inject.Inject
     lateinit var vmFactory: BookingViewModelFactory
     private lateinit var viewModel: BookingViewModel
+
+    private val touristListView: MutableList<ItemInfoTouristBinding> = mutableListOf()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,42 +64,9 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
                             updateCvFirstTourist(it.isOpenViewPerson[0], it.persons[0])
                         }
                         viewBinding.pbLoad.isVisible = it.dataLoading
-                        if (it.incorrectPhone != null) {
-                            if (it.incorrectPhone) {
-                                val colorValue = ContextCompat
-                                    .getColor(
-                                        requireContext(),
-                                        R.color.color_background_input_field,
-                                    )
-                                viewBinding.inputPhone.llInputContainer.setBackgroundColor(
-                                    colorValue,
-                                )
-                            } else {
-                                val colorValue =
-                                    ContextCompat.getColor(requireContext(), R.color.error_input)
-                                viewBinding.inputPhone.llInputContainer.setBackgroundColor(
-                                    colorValue,
-                                )
-                            }
-                        }
-                        if (it.incorrectEmail != null) {
-                            if (it.incorrectEmail) {
-                                val colorValue = ContextCompat
-                                    .getColor(
-                                        requireContext(),
-                                        R.color.color_background_input_field,
-                                    )
-                                viewBinding.inputEmail.llInputContainer.setBackgroundColor(
-                                    colorValue,
-                                )
-                            } else {
-                                val colorValue =
-                                    ContextCompat.getColor(requireContext(), R.color.error_input)
-                                viewBinding.inputEmail.llInputContainer.setBackgroundColor(
-                                    colorValue,
-                                )
-                            }
-                        }
+                        setPhoneState(it.correctPhone)
+                        setEmailState(it.correctEmail)
+                        if (it.isPayed) payed()
                     }
                 }
                 launch {
@@ -120,6 +90,55 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
         viewBinding.iitFirst.numberPassport.tilInputField.hint = getString(R.string.textNumberPassportPerson)
         viewBinding.iitFirst.validityPeriodPassport
             .tilInputField.hint = getString(R.string.textValidityPeriodPassportPerson)
+        viewBinding.iitFirst.inputName.tietInputField.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                viewModel.checkPhoneNumber(
+                    viewBinding.inputPhone.tietInputField.text.toString(),
+                )
+            }
+        }
+    }
+
+    private fun setPhoneState(state: Boolean?) {
+        if (state != null) {
+            if (state) {
+                val colorValue = ContextCompat
+                    .getColor(
+                        requireContext(),
+                        R.color.color_background_input_field,
+                    )
+                viewBinding.inputPhone.llInputContainer.setBackgroundColor(
+                    colorValue,
+                )
+            } else {
+                val colorValue =
+                    ContextCompat.getColor(requireContext(), R.color.error_input)
+                viewBinding.inputPhone.llInputContainer.setBackgroundColor(
+                    colorValue,
+                )
+            }
+        }
+    }
+
+    private fun setEmailState(state: Boolean?) {
+        if (state != null) {
+            if (state) {
+                val colorValue = ContextCompat
+                    .getColor(
+                        requireContext(),
+                        R.color.color_background_input_field,
+                    )
+                viewBinding.inputEmail.llInputContainer.setBackgroundColor(
+                    colorValue,
+                )
+            } else {
+                val colorValue =
+                    ContextCompat.getColor(requireContext(), R.color.error_input)
+                viewBinding.inputEmail.llInputContainer.setBackgroundColor(
+                    colorValue,
+                )
+            }
+        }
     }
 
     private fun settingPhoneAndEmailField() {
@@ -242,9 +261,14 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
 
     private fun setButtonPay() {
         viewBinding.btnPayRoom.setOnClickListener {
-            val action = BookingFragmentDirections.actionFragmentBookingToFragmentOrderPay()
-            Navigation.findNavController(viewBinding.root).navigate(action)
+            viewBinding.tvScreenName.requestFocus()
+            viewModel.onClickButtonPay()
         }
+    }
+
+    private fun payed() {
+        val action = BookingFragmentDirections.actionFragmentBookingToFragmentOrderPay()
+        Navigation.findNavController(viewBinding.root).navigate(action)
     }
 
     private fun writeError(view: View, error: String) {

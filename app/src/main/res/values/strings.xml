@@ -7,6 +7,7 @@
     <string name="textForDates">%1$s - %2$s</string>
     <string name="textForNumbersOfNight">%1$s ночей</string>
     <string name="textForNumbersTourist">%1$s турист</string>
+    <string name="textWithNumberOrder">Подтверждение заказа №%1$s может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
     <string name="textAboutHotel">Об отеле</string>
     <string name="textComfort">Удобства</string>
     <string name="textMostNecessary">Самое необходимое</string>

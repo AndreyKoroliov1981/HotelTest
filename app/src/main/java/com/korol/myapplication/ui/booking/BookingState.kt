@@ -9,6 +9,7 @@ data class BookingState(
     val dataLoading: Boolean = false,
     val persons: List<Person> = listOf(Person()),
     val isOpenViewPerson: List<Boolean> = listOf(false),
-    val incorrectPhone: Boolean? = null,
-    val incorrectEmail: Boolean? = null
+    val correctPhone: Boolean? = null,
+    val correctEmail: Boolean? = null,
+    val isPayed: Boolean = false
 )
