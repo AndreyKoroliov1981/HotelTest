@@ -1,6 +1,7 @@
 package com.korol.myapplication.ui.booking
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
@@ -23,6 +24,10 @@ import com.korol.myapplication.databinding.FragmentBookingBinding
 import com.korol.myapplication.ui.booking.model.Person
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.tinkoff.decoro.MaskImpl
+import ru.tinkoff.decoro.slots.PredefinedSlots
+import ru.tinkoff.decoro.watchers.FormatWatcher
+import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 import java.util.Locale
 
 class BookingFragment : Fragment(R.layout.fragment_booking) {
@@ -39,11 +44,8 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
         setButtonBackListeners()
         setButtonPay()
         setPullToRefresh()
-        viewBinding.inputPhone.tvHint.text = "Номер телефона"
-        viewBinding.inputPhone.etText.setText("+7 (951) 555-99-00")
-        viewBinding.inputEmail.tvHint.text = "Почта"
-        viewBinding.inputEmail.etText.setText("korol81@bk.ru")
-
+        settingPhoneAndEmailField()
+        initFirstTourist()
         viewBinding.iitFirst.tvNumberTourist.text = getString(
             R.string.textForNumbersTourist,
             resources.getStringArray(R.array.digitString)[0],
@@ -59,6 +61,42 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
                             updateCvFirstTourist(it.isOpenViewPerson[0], it.persons[0])
                         }
                         viewBinding.pbLoad.isVisible = it.dataLoading
+                        if (it.incorrectPhone != null) {
+                            if (it.incorrectPhone) {
+                                val colorValue = ContextCompat
+                                    .getColor(
+                                        requireContext(),
+                                        R.color.color_background_input_field,
+                                    )
+                                viewBinding.inputPhone.llInputContainer.setBackgroundColor(
+                                    colorValue,
+                                )
+                            } else {
+                                val colorValue =
+                                    ContextCompat.getColor(requireContext(), R.color.error_input)
+                                viewBinding.inputPhone.llInputContainer.setBackgroundColor(
+                                    colorValue,
+                                )
+                            }
+                        }
+                        if (it.incorrectEmail != null) {
+                            if (it.incorrectEmail) {
+                                val colorValue = ContextCompat
+                                    .getColor(
+                                        requireContext(),
+                                        R.color.color_background_input_field,
+                                    )
+                                viewBinding.inputEmail.llInputContainer.setBackgroundColor(
+                                    colorValue,
+                                )
+                            } else {
+                                val colorValue =
+                                    ContextCompat.getColor(requireContext(), R.color.error_input)
+                                viewBinding.inputEmail.llInputContainer.setBackgroundColor(
+                                    colorValue,
+                                )
+                            }
+                        }
                     }
                 }
                 launch {
@@ -70,6 +108,44 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun initFirstTourist() {
+        viewBinding.iitFirst.inputName.tilInputField.hint = getString(R.string.textNamePerson)
+        viewBinding.iitFirst.inputSurname.tilInputField.hint = getString(R.string.textSurnamePerson)
+        viewBinding.iitFirst.birthday.tilInputField.hint = getString(R.string.textBirthdayPerson)
+        viewBinding.iitFirst.citizenship.tilInputField.hint = getString(R.string.textCitizenshipPerson)
+        viewBinding.iitFirst.numberPassport.tilInputField.hint = getString(R.string.textNumberPassportPerson)
+        viewBinding.iitFirst.validityPeriodPassport
+            .tilInputField.hint = getString(R.string.textValidityPeriodPassportPerson)
+    }
+
+    private fun settingPhoneAndEmailField() {
+        val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
+        mask.isHideHardcodedHead = false
+        mask.placeholder = '*'
+        mask.isShowingEmptySlots = true
+        val formatWatcher: FormatWatcher = MaskFormatWatcher(mask)
+        formatWatcher.installOn(viewBinding.inputPhone.tietInputField)
+        viewBinding.inputPhone.tietInputField.inputType = InputType.TYPE_CLASS_PHONE
+        viewBinding.inputPhone.tilInputField.hint = getString(R.string.textNumberPhone)
+        viewBinding.inputPhone.tietInputField.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                viewModel.checkPhoneNumber(
+                    viewBinding.inputPhone.tietInputField.text.toString(),
+                )
+            }
+        }
+
+        viewBinding.inputEmail.tietInputField.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        viewBinding.inputEmail.tilInputField.hint = getString(R.string.textEmail)
+        viewBinding.inputEmail.tietInputField.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                viewModel.checkEmail(
+                    viewBinding.inputEmail.tietInputField.text.toString(),
+                )
             }
         }
     }

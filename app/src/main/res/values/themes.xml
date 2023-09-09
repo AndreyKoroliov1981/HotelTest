@@ -24,6 +24,10 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
     </style>
 
+    <style name="EditTextHintStyle" parent="Widget.Design.TextInputLayout">
+    <item name="colorPrimary">@color/gray</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">0dp</item>

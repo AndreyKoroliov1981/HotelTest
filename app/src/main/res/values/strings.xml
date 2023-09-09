@@ -31,6 +31,14 @@
     <string name="textServiceCharge">Сервисный сбор</string>
     <string name="textInPay">К оплате</string>
     <string name="textAddTourist">Добавить туриста</string>
+    <string name="textNamePerson">Имя</string>
+    <string name="textSurnamePerson">Фамилия</string>
+    <string name="textBirthdayPerson">Дата рождения</string>
+    <string name="textCitizenshipPerson">Гражданство</string>
+    <string name="textNumberPassportPerson">Номер занранпаспорта</string>
+    <string name="textValidityPeriodPassportPerson">Срок действия загранпаспорта</string>
+    <string name="textNumberPhone">Номер телефона</string>
+    <string name="textEmail">Почта</string>
 
     <string-array name="digitString">
         <item>Первый</item>

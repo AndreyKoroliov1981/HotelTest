@@ -76,4 +76,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //упрощение клавиатурного ввода номера телефона
+    //https://habr.com/ru/company/tinkoff/blog/312968/
+    implementation "ru.tinkoff.decoro:decoro:1.5.0"
 }

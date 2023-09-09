@@ -354,8 +354,8 @@
             </com.google.android.material.card.MaterialCardView>
 
             <include
-                layout="@layout/item_info_tourist"
                 android:id="@+id/iitFirst"
+                layout="@layout/item_info_tourist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />

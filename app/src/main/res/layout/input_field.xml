@@ -12,32 +12,40 @@
         app:cardElevation="0dp"
         >
         <LinearLayout
+            android:id="@+id/llInputContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/color_background_input_field"
             >
-            <TextView
-                android:id="@+id/tvHint"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilInputField"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:textColor="@color/color_hint_text"
-                android:textSize="12sp"
-                tools:text = "Почта"
-                />
-            <EditText
-                android:id="@+id/etText"
-                android:layout_width="wrap_content"
+                tools:hint="Hint"
+                app:hintTextColor="@color/color_hint_text"
+                app:errorEnabled="false"
+                app:errorIconDrawable="@null"
+                android:paddingTop="10dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:theme="@style/EditTextHintStyle"
+                >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tietInputField"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="10dp"
                 android:textColor="@color/color_input_text"
                 android:textSize="16sp"
-                android:background="@android:color/transparent"
-                android:layout_marginBottom="10dp"
-                tools:text = "examplemail.000@mail.ru"
-                />
+                android:inputType="text|textCapWords"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:maxLength="20"
+                android:maxLines="1"
+                 />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
