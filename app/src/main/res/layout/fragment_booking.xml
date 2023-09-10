@@ -347,7 +347,7 @@
                         android:layout_marginBottom="16dp"
                         android:textSize="14sp"
                         android:textColor="@color/gray"
-                        android:text="Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту"
+                        android:text="@string/textIfoAboutSecuredInformation"
                         />
 
                 </LinearLayout>

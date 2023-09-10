@@ -42,7 +42,8 @@
                 android:textSize="16sp"
                 android:inputType="text|textCapWords"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:maxLength="20"
+                android:focusedByDefault = "true"
+                android:maxLength="30"
                 android:maxLines="1"
                  />
             </com.google.android.material.textfield.TextInputLayout>

@@ -40,6 +40,7 @@
     <string name="textValidityPeriodPassportPerson">Срок действия загранпаспорта</string>
     <string name="textNumberPhone">Номер телефона</string>
     <string name="textEmail">Почта</string>
+    <string name="textIfoAboutSecuredInformation">Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту</string>
 
     <string-array name="digitString">
         <item>Первый</item>

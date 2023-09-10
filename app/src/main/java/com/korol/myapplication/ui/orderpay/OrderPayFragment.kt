@@ -12,6 +12,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.korol.myapplication.R
 import com.korol.myapplication.app.App
 import com.korol.myapplication.databinding.FragmentOrderPayBinding
+import com.korol.myapplication.ui.hotel.HotelViewModel
 import kotlinx.coroutines.launch
 
 class OrderPayFragment : Fragment(R.layout.fragment_order_pay) {

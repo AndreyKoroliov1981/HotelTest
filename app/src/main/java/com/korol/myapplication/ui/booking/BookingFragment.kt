@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -49,10 +50,6 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
         setPullToRefresh()
         settingPhoneAndEmailField()
         initFirstTourist()
-        viewBinding.iitFirst.tvNumberTourist.text = getString(
-            R.string.textForNumbersTourist,
-            resources.getStringArray(R.array.digitString)[0],
-        )
         setCloseInfoFirstTouristListener()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -66,6 +63,7 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
                         viewBinding.pbLoad.isVisible = it.dataLoading
                         setPhoneState(it.correctPhone)
                         setEmailState(it.correctEmail)
+                        setFirstTouristState(it.correctFirstTourist, it.persons[0])
                         if (it.isPayed) payed()
                     }
                 }
@@ -83,19 +81,34 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
     }
 
     private fun initFirstTourist() {
+        viewBinding.iitFirst.tvNumberTourist.text = getString(
+            R.string.textForNumbersTourist,
+            resources.getStringArray(R.array.digitString)[0],
+        )
         viewBinding.iitFirst.inputName.tilInputField.hint = getString(R.string.textNamePerson)
+        viewBinding.iitFirst.inputName.tietInputField.addTextChangedListener { text ->
+            viewModel.updateFirstTouristName(text.toString())
+        }
         viewBinding.iitFirst.inputSurname.tilInputField.hint = getString(R.string.textSurnamePerson)
+        viewBinding.iitFirst.inputSurname.tietInputField.addTextChangedListener { text ->
+            viewModel.updateFirstTouristSurname(text.toString())
+        }
         viewBinding.iitFirst.birthday.tilInputField.hint = getString(R.string.textBirthdayPerson)
+        viewBinding.iitFirst.birthday.tietInputField.addTextChangedListener { text ->
+            viewModel.updateFirstTouristBirthday(text.toString())
+        }
         viewBinding.iitFirst.citizenship.tilInputField.hint = getString(R.string.textCitizenshipPerson)
+        viewBinding.iitFirst.citizenship.tietInputField.addTextChangedListener { text ->
+            viewModel.updateFirstTouristCitizenship(text.toString())
+        }
         viewBinding.iitFirst.numberPassport.tilInputField.hint = getString(R.string.textNumberPassportPerson)
+        viewBinding.iitFirst.numberPassport.tietInputField.addTextChangedListener { text ->
+            viewModel.updateFirstTouristNumberPassport(text.toString())
+        }
         viewBinding.iitFirst.validityPeriodPassport
             .tilInputField.hint = getString(R.string.textValidityPeriodPassportPerson)
-        viewBinding.iitFirst.inputName.tietInputField.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                viewModel.checkPhoneNumber(
-                    viewBinding.inputPhone.tietInputField.text.toString(),
-                )
-            }
+        viewBinding.iitFirst.validityPeriodPassport.tietInputField.addTextChangedListener { text ->
+            viewModel.updateFirstTouristValidityPeriodPassport(text.toString())
         }
     }
 
@@ -116,6 +129,109 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
                 viewBinding.inputPhone.llInputContainer.setBackgroundColor(
                     colorValue,
                 )
+            }
+        }
+    }
+
+    private fun setFirstTouristState(state: Boolean?, person: Person) {
+        if (state != null) {
+            if (!state) {
+                if ((person.name?.length ?: 0) > BookingViewModel.TEXT_LENGTH) {
+                    val colorValue = ContextCompat
+                        .getColor(
+                            requireContext(),
+                            R.color.color_background_input_field,
+                        )
+                    viewBinding.iitFirst.inputName.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                } else {
+                    val colorValue =
+                        ContextCompat.getColor(requireContext(), R.color.error_input)
+                    viewBinding.iitFirst.inputName.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                }
+                if ((person.surname?.length ?: 0) > BookingViewModel.TEXT_LENGTH) {
+                    val colorValue = ContextCompat
+                        .getColor(
+                            requireContext(),
+                            R.color.color_background_input_field,
+                        )
+                    viewBinding.iitFirst.inputSurname.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                } else {
+                    val colorValue =
+                        ContextCompat.getColor(requireContext(), R.color.error_input)
+                    viewBinding.iitFirst.inputSurname.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                }
+                if ((person.birthday?.length ?: 0) > BookingViewModel.TEXT_LENGTH) {
+                    val colorValue = ContextCompat
+                        .getColor(
+                            requireContext(),
+                            R.color.color_background_input_field,
+                        )
+                    viewBinding.iitFirst.birthday.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                } else {
+                    val colorValue =
+                        ContextCompat.getColor(requireContext(), R.color.error_input)
+                    viewBinding.iitFirst.birthday.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                }
+                if ((person.citizenship?.length ?: 0) > BookingViewModel.TEXT_LENGTH) {
+                    val colorValue = ContextCompat
+                        .getColor(
+                            requireContext(),
+                            R.color.color_background_input_field,
+                        )
+                    viewBinding.iitFirst.citizenship.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                } else {
+                    val colorValue =
+                        ContextCompat.getColor(requireContext(), R.color.error_input)
+                    viewBinding.iitFirst.citizenship.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                }
+                if ((person.numberPassport?.length ?: 0) > BookingViewModel.TEXT_LENGTH) {
+                    val colorValue = ContextCompat
+                        .getColor(
+                            requireContext(),
+                            R.color.color_background_input_field,
+                        )
+                    viewBinding.iitFirst.numberPassport.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                } else {
+                    val colorValue =
+                        ContextCompat.getColor(requireContext(), R.color.error_input)
+                    viewBinding.iitFirst.numberPassport.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                }
+                if ((person.validityPeriodPassport?.length ?: 0) > BookingViewModel.TEXT_LENGTH) {
+                    val colorValue = ContextCompat
+                        .getColor(
+                            requireContext(),
+                            R.color.color_background_input_field,
+                        )
+                    viewBinding.iitFirst.validityPeriodPassport.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                } else {
+                    val colorValue =
+                        ContextCompat.getColor(requireContext(), R.color.error_input)
+                    viewBinding.iitFirst.validityPeriodPassport.llInputContainer.setBackgroundColor(
+                        colorValue,
+                    )
+                }
             }
         }
     }
@@ -142,6 +258,7 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
     }
 
     private fun settingPhoneAndEmailField() {
+        viewBinding.tvScreenName.requestFocus()
         val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
         mask.isHideHardcodedHead = false
         mask.placeholder = '*'
@@ -150,6 +267,9 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
         formatWatcher.installOn(viewBinding.inputPhone.tietInputField)
         viewBinding.inputPhone.tietInputField.inputType = InputType.TYPE_CLASS_PHONE
         viewBinding.inputPhone.tilInputField.hint = getString(R.string.textNumberPhone)
+        viewBinding.inputPhone.tietInputField.addTextChangedListener { text ->
+            viewModel.updatePhone(text.toString())
+        }
         viewBinding.inputPhone.tietInputField.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 viewModel.checkPhoneNumber(
@@ -158,8 +278,12 @@ class BookingFragment : Fragment(R.layout.fragment_booking) {
             }
         }
 
-        viewBinding.inputEmail.tietInputField.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         viewBinding.inputEmail.tilInputField.hint = getString(R.string.textEmail)
+        viewBinding.inputEmail.tietInputField.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        viewBinding.inputEmail.tietInputField.setText(viewModel.stateFlow.value.email)
+        viewBinding.inputEmail.tietInputField.addTextChangedListener { text ->
+            viewModel.updateEmail(text.toString())
+        }
         viewBinding.inputEmail.tietInputField.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 viewModel.checkEmail(
